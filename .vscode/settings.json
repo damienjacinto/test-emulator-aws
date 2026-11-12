@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    "*.tfvars.example": "tfvars"
+  },
+  "files.exclude": {
+    "**/.terraform": true
+  },
+  "search.exclude": {
+    "**/.terraform": true,
+    "**/*.tfstate*": true
+  }
+}

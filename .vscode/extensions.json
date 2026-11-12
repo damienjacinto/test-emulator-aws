@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "4ops.terraform",
+    "emeraldwalk.runonsave",
+    "editorconfig.editorconfig"
+  ],
+  "unwantedRecommendations": [
+    "hashicorp.terraform"
+  ]
+}

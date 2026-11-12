@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0",
+  "inputs": [
+    { "id": "env", "type": "pickString", "description": "Environment", "options": ["dev", "prod"], "default": "dev" }
+  ],
+  "tasks": [
+    { "label": "tf: init", "type": "shell", "command": "terraform init", "options": { "cwd": "${workspaceFolder}/envs/${input:env}" }, "problemMatcher": [] },
+    { "label": "tf: plan", "type": "shell", "command": "terraform plan -out=tfplan", "options": { "cwd": "${workspaceFolder}/envs/${input:env}" }, "problemMatcher": [] },
+    { "label": "tf: apply plan", "type": "shell", "command": "terraform apply tfplan", "options": { "cwd": "${workspaceFolder}/envs/${input:env}" }, "problemMatcher": [] },
+    { "label": "tf: validate", "type": "shell", "command": "terraform validate", "options": { "cwd": "${workspaceFolder}/envs/${input:env}" }, "problemMatcher": [], "group": "test" },
+    { "label": "tf: fmt", "type": "shell", "command": "terraform fmt -recursive", "problemMatcher": [] },
+    { "label": "tf: lint", "type": "shell", "command": "tflint --init && tflint --recursive", "problemMatcher": [], "group": "test" },
+    { "label": "tf: security scan", "type": "shell", "command": "trivy config --skip-dirs '**/.terraform' .", "problemMatcher": [], "group": "test" },
+    { "label": "tf: pre-commit all", "type": "shell", "command": "pre-commit run --all-files", "problemMatcher": [], "group": { "kind": "test", "isDefault": true } }
+  ]
+}
